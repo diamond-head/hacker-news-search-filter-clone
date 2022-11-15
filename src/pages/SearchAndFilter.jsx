@@ -38,7 +38,6 @@ export default function SearchAndFilter({ inputFields, onInputFieldsChange }) {
       [filterEnums.SEARCH_BY]: value,
       [filterEnums.SEARCH_FOR]: value,
     };
-    console.log(value, id);
     onInputFieldsChange((prev) => ({
       ...prev,
       [id]: _value[id],

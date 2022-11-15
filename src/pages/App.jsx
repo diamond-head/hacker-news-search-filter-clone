@@ -29,7 +29,7 @@ export default function App() {
   });
 
   const [inputFields, setInputFields] = React.useState({
-    [filterEnums.SEARCH_INPUT]: "",
+    [filterEnums.SEARCH_INPUT]: defaultFilterValues[filterEnums.SEARCH_INPUT],
     [filterEnums.SEARCH_X]: defaultFilterValues[filterEnums.SEARCH_X],
     [filterEnums.SEARCH_BY]: defaultFilterValues[filterEnums.SEARCH_BY],
     [filterEnums.SEARCH_FOR]: defaultFilterValues[filterEnums.SEARCH_FOR],
@@ -72,7 +72,7 @@ export default function App() {
     try {
       const payload = {
         page: paginationData.page,
-        query: inputFields.query,
+        query: inputFields.SEARCH_INPUT,
         filters: {
           tags: inputFields.SEARCH_X,
           numericFilters:
@@ -103,8 +103,8 @@ export default function App() {
         inputFields={inputFields}
         onInputFieldsChange={setInputFields}
       />
-      {requestInProgress ? <Skeleton /> : <List dataList={currentNews} />}
-      <Box sx={{ margin: "auto", display: "flex", justifyContent: "center" }}>
+      {requestInProgress ? <Skeleton /> : <List searchX={inputFields.SEARCH_X} dataList={currentNews} />}
+      <Box sx={{ paddingBottom: 2, margin: "auto", display: "flex", justifyContent: "center" }}>
         <Pagination
           count={paginationData.count}
           page={paginationData.page}

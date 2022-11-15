@@ -14,6 +14,7 @@ export const filterEnums = Object.freeze({
 });
 
 export const defaultFilterValues = Object.freeze({
+  [filterEnums.SEARCH_INPUT]: '',
   [filterEnums.SEARCH_X]: "story",
   [filterEnums.SEARCH_BY]: "DATE",
   [filterEnums.SEARCH_FOR]: "ALL",
@@ -32,9 +33,9 @@ export const SEARCH_BY_OPTIONS = [
 
 export const SEARCH_FOR_OPTIONS = [
   { text: "All time", value: "ALL" },
-  { text: "Last 24h", value: DAY_IN_SECONDS * 1000 },
-  { text: "Past Week", value: WEEK_IN_SECONDS * 1000 },
-  { text: "Past Month", value: MONTH_IN_SECONDS * 1000 },
-  { text: "Past Year", value: YEARS_IN_SECONDS * 1000 },
+  { text: "Last 24h", value: Math.floor((new Date().getTime() - DAY_IN_SECONDS * 1000) / 1000) },
+  { text: "Past Week", value: Math.floor((new Date().getTime() - WEEK_IN_SECONDS * 1000) / 1000) },
+  { text: "Past Month", value: Math.floor((new Date().getTime() - MONTH_IN_SECONDS * 1000) / 1000) },
+  { text: "Past Year", value: Math.floor((new Date().getTime() - YEARS_IN_SECONDS * 1000) / 1000) },
   // { text: "Custom range", value: "CUSTOM" },
 ];

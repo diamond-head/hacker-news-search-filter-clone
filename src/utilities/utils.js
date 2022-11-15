@@ -57,3 +57,22 @@ export function debounce(func, delay) {
     }, delay);
   };
 }
+
+export function escapeHtml (html = '') {
+  if (!html) {
+    return ''
+  }
+
+  const unsafeChars = [
+    ['&amp;', '&'],
+    ['&lt;', '<'],
+    ['&gt;', '>'],
+    ['&039;', `'`],
+    ['&quot;', `"`],
+    ['&#x2F;', '/'],
+    ['&#x2f;', '/'],
+    ['&#x27;', '`']
+  ]
+
+  return unsafeChars.reduce((acc, char) => acc.replaceAll(char[0], char[1]), html)
+}

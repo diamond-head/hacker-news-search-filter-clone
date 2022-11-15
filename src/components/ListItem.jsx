@@ -70,14 +70,14 @@ const getSecondaryNode = (nodeValue) => {
 };
 
 export default function CustomListItem({
-  story_title,
-  story_url,
-  created_at_i,
-  points,
-  num_comments,
-  author,
-  title,
-  url,
+  story_title = null,
+  story_url = null,
+  created_at_i = new Date(),
+  author = null,
+  title = null,
+  url = null,
+  points = 0,
+  num_comments = 0,
 }) {
   return (
     <ListItemContainer>
@@ -90,9 +90,9 @@ export default function CustomListItem({
                 href: story_url || url,
               })}
               secondary={getSecondaryNode({
-                comments: num_comments || 0,
+                comments: num_comments,
                 posted: timeSince(created_at_i),
-                points: points || 0,
+                points: points,
                 author,
               })}
             />
