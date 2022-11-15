@@ -4,7 +4,7 @@ import { styled } from "@mui/material/styles";
 import SearchAndFilter from "./SearchAndFilter";
 import { List, Pagination, Skeleton } from "../components";
 import {
-  DAY_IN_SECONDS,
+  // DAY_IN_SECONDS,
   defaultFilterValues,
   filterEnums,
 } from "../utilities/constants";
@@ -23,10 +23,10 @@ export default function App() {
     page: 1,
     count: 1,
   });
-  const [customDate, setCustomDate] = React.useState({
-    start: new Date(),
-    end: new Date(new Date().getTime() + DAY_IN_SECONDS * 1000),
-  });
+  // const [customDate, setCustomDate] = React.useState({
+  //   start: new Date(),
+  //   end: new Date(new Date().getTime() + DAY_IN_SECONDS * 1000),
+  // });
 
   const [inputFields, setInputFields] = React.useState({
     [filterEnums.SEARCH_INPUT]: defaultFilterValues[filterEnums.SEARCH_INPUT],
@@ -60,12 +60,12 @@ export default function App() {
     setPaginationData((prev) => ({ ...prev, page }));
   };
 
-  const handleCustomDateChange = ({ target: { name, value } }) => {
-    setCustomDate((prev) => ({
-      ...prev,
-      [name]: new Date(value).getTime(),
-    }));
-  };
+  // const handleCustomDateChange = ({ target: { name, value } }) => {
+  //   setCustomDate((prev) => ({
+  //     ...prev,
+  //     [name]: new Date(value).getTime(),
+  //   }));
+  // };
 
   const fetchNews = async () => {
     setRequestInProgress(true);
@@ -78,10 +78,10 @@ export default function App() {
           numericFilters:
             inputFields.SEARCH_FOR !== "CUSTOM" &&
             inputFields.SEARCH_FOR !== "ALL"
-              ? "created_at_i>" + inputFields.SEARCH_FOR
-              : inputFields.SEARCH_FOR === "CUSTOM"
-              ? `created_at_i>${customDate.start},created_at_i<${customDate.end}`
-              : "",
+              ? "created_at_i>" + inputFields.SEARCH_FOR : ''
+              // : inputFields.SEARCH_FOR === "CUSTOM"
+              // ? `created_at_i>${customDate.start},created_at_i<${customDate.end}`
+              // : "",
         },
       };
       const response = await RequestNewsBy[inputFields.SEARCH_BY](payload);
